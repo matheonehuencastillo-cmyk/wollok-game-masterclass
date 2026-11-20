@@ -103,7 +103,7 @@ class Esqueleto inherits Enemigo {
 		self.intentarMoverA(direccion.siguientePosicion(position))
 	}
 	override method iniciarComportamiento(frecuenciaMs) {
-		super(frecuenciaMs + 300)
+		super(frecuenciaMs + 2000)
 	}
 }
 

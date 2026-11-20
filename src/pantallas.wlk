@@ -7,6 +7,7 @@ import objetosAColisionar.*
 import salida.*
 import enemigos.*
 import hud.*
+import mapa.*
 
 class PistaMusical {
   const sonido
@@ -57,6 +58,12 @@ class PantallaAnimada inherits PantallaBase {
     game.onTick(intervaloMs, "anim_" + self.identity(), { self.siguienteImagen() })
   }
 
+  method mostrarPantallaFinal() {
+    inicio.limpiarEscena()
+    self.mostrar(600)
+    keyboard.enter().onPressDo({ inicio.mostrarMenu() })
+  }
+
   method siguienteImagen()
 }
 
@@ -72,9 +79,9 @@ class PantallaAnimadaFinita inherits PantallaAnimada {
   }
 }
 
-object fondoLaberinto inherits PantallaCiclica(
-  imagenes = ["fondo_nivel1_1.jpg", "fondo_nivel1_2.jpg"]
-) {}
+object fondoLaberinto inherits PantallaBase {
+  method image() = "fondo.gif"
+}
 
 object pantallaMenu inherits PantallaCiclica(
   imagenes = ["menu_image1.jpg", "menu_image2.jpg"]
@@ -90,21 +97,13 @@ object pantallaInstruccionesJuego inherits PantallaCiclica(
 
 object pantallaVictoria inherits PantallaCiclica(
   imagenes = ["pantallaVictoria_1.jpg", "pantallaVictoria_2.jpg"]
-) {
-  method mostrarVictoria() {
-    inicio.limpiarEscena()
-    self.mostrar(600)
-    keyboard.enter().onPressDo({ inicio.mostrarMenu() })
-  }
-}
+) {}
 
 object pantallaGameOver inherits PantallaAnimadaFinita(
   imagenes = ["gameover_1.jpg", "gameover_2.jpg", "gameover_3.jpg"]
 ) {
   method iniciarAnimacion() {
-    inicio.limpiarEscena()
-    self.mostrar(600)
-    keyboard.enter().onPressDo({ inicio.mostrarMenu() })
+    self.mostrarPantallaFinal()
   }
 }
 
@@ -145,18 +144,15 @@ object gestorEnemigosNivelDos {
   method crearEnemigos() = [
     new Murcielago(position = game.at(15, 2)),
     new Murcielago(position = game.at(10, 13)),
-    new Murcielago(position = game.at(18, 21)),
-    new Esqueleto(position = game.at(10, 8), objetivo = personaje),
-    new Esqueleto(position = game.at(26, 16), objetivo = personaje)
+    new Esqueleto(position = game.at(26, 16)),
+    new Esqueleto(position = game.at(14, 9))
   ]
 
   method mostrar() {
     self.detenerTodos()
     activos.addAll(self.crearEnemigos())
     activos.forEach({ enemigo => game.addVisual(enemigo) })
-    game.onTick(550, "moverEnemigos", {
-      activos.forEach({ enemigo => enemigo.mover() })
-    })
+      activos.forEach({ enemigo => enemigo.iniciarComportamiento(1000) })
   }
 
   method detenerTodos() {
@@ -170,15 +166,7 @@ class ReglaSalida {
   const accion
 
   method aplica() = condicion.apply()
-  method ejecutar() { accion.ejecutar() }
-}
-
-object accionAvanzarNivel {
-  method ejecutar() { inicio.nivelDos() }
-}
-
-object accionPedirLlave {
-  method ejecutar() { game.say(personaje, "Necesito la llave") }
+  method ejecutar() { accion.apply() }
 }
 
 class Nivel {
@@ -193,8 +181,8 @@ class Nivel {
 
 object nivelUno inherits Nivel {
   const reglasSalida = [
-    new ReglaSalida(condicion = { cofreColocado.tieneLaLlave() }, accion = accionAvanzarNivel),
-    new ReglaSalida(condicion = { not cofreColocado.tieneLaLlave() }, accion = accionPedirLlave)
+    new ReglaSalida(condicion = { cofreColocado.tieneLaLlave() }, accion = { inicio.nivelDos() }),
+    new ReglaSalida(condicion = { not cofreColocado.tieneLaLlave() }, accion = { game.say(personaje, "Necesito la llave") })
   ]
 
   override method colocarObjetos() {
@@ -213,7 +201,7 @@ object nivelDos inherits Nivel {
   }
 
   override method alLlegarASalida() {
-    pantallaVictoria.mostrarVictoria()
+    pantallaVictoria.mostrarPantallaFinal()
   }
 }
 
@@ -236,7 +224,7 @@ object inicio {
   method mostrarMenu() {
     self.limpiarEscena()
     musicaMenu.reproducir()
-    pantallaMenu.mostrar(800)
+    game.addVisual(new PantallaCiclica(imagenes=["menu_image1.jpg", "menu_image2.jpg"])).mostrar(800)
 
     keyboard.j().onPressDo({ self.mostrarSeleccionHeroe() })
     keyboard.c().onPressDo({ self.mostrarControles() })
@@ -283,7 +271,7 @@ object inicio {
   method prepararTableroBase() {
     self.limpiarEscena()
     musicaLaberinto.reproducir()
-    fondoLaberinto.mostrar(1000)
+    fondoLaberinto.mostrarEnPantalla()
 
     personaje.reiniciar()
     game.addVisual(relojDePartida)
@@ -291,6 +279,7 @@ object inicio {
     game.addVisual(hudVidas)
     game.addVisual(salida)
     game.addVisual(personaje)
+    mapa.inicializarParedes()
 
     relojDePartida.iniciarTemporizador()
     self.configurarControlesJugador()
