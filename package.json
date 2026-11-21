@@ -1,4 +1,6 @@
 {
     "name": "tp-final-wollok-game-masterclass",
-    "resourceFolder": "assets" 
+    "sourceFolder": "src",
+    "resourceFolder": "assets",
+    "main": "juego.wpgm"
 }
