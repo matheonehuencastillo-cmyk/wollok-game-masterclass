@@ -224,7 +224,7 @@ object inicio {
   method mostrarMenu() {
     self.limpiarEscena()
     musicaMenu.reproducir()
-    game.addVisual(new PantallaCiclica(imagenes=["menu_image1.jpg", "menu_image2.jpg"])).mostrar(800)
+    pantallaMenu.mostrar(800)
 
     keyboard.j().onPressDo({ self.mostrarSeleccionHeroe() })
     keyboard.c().onPressDo({ self.mostrarControles() })

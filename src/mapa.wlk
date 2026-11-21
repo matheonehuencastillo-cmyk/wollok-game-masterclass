@@ -60,9 +60,5 @@ object mapa {
     self.agregarColumna(20, 5..10)
     self.agregarColumna(23, 15..19)
 
-    // bases de antorchas
-    [[1,3],[5,3],[17,12],[21,13],[29,12],[5,20],[8,21],[27,22]].forEach({ p =>
-      self.agregarPared(p.get(0), p.get(1))
-    })
   }
 }
