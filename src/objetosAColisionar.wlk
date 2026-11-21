@@ -20,12 +20,20 @@ class ObjetosAColisionar {
 
 class Trampa inherits ObjetosAColisionar {
     var property visible = true
+    var activa = true
 
-    override method image() = if (visible){"trampa_visible.png"}else{"trampa_invisible.png"}
+    override method image() = if (visible) { "trampa_visible.png" } else { "trampa_invisible.png" }
+
+    override method colision() {
+        if (activa) {
+            activa = false
+            super()
+        }
+    }
 
     override method efecto() {
         personaje.bloquearMovimiento()
-        game.schedule(2000, {personaje.desbloquearMovimiento()})
+        game.schedule(2000, { personaje.desbloquearMovimiento() })
     }
 
     override method mensaje() = "No me puedo mover!!"
@@ -39,20 +47,18 @@ object trampaColocada {
                       game.at(27,17)]
 
   method mostrar() {
-    posiciones.forEach({p =>
+    posiciones.forEach({ p =>
       const trampa_ = new Trampa(position = p)
       game.addVisual(trampa_)
-      game.schedule(personaje.arquetipo().tiempoTrampa(), {trampa_.visible(false)})
+      game.schedule(personaje.arquetipo().tiempoTrampa(), { trampa_.visible(false) })
     })
   }
 }
 
 class Cofres inherits ObjetosAColisionar {
-
     override method image() = "cofre.png"
 
     override method efecto() {
-        self.quitarObjeto()
         cofreColocado.registrarCofreAbierto()
     }
 
@@ -71,7 +77,7 @@ object cofreColocado {
 
   method mostrar() {
     cofresAbiertos = 0
-    posiciones.forEach({p =>
+    posiciones.forEach({ p =>
       const cofre_ = new Cofres(position = p)
       game.addVisual(cofre_)
     })
