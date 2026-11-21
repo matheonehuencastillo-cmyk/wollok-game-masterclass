@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: uqbar-project/wollok-web-tools@main
         with:
-          program: src/juego.wpgm
+          program: juego.juego
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
