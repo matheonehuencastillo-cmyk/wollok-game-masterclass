@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: uqbar-project/wollok-web-tools@main
+        with:
+          program: src/juego.wpgm
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
