@@ -41,7 +41,7 @@ object personaje{
         cofreColocado.cofresAbiertos(0)
         self.asignarVida()
         self.puedeMover(false)
-        game.schedule(3000, {self.puedeMover(true)})
+        game.schedule(arquetipo.tiempoStun(), {self.puedeMover(true)})
     }
     method elegirArquetipo(nuevoArquetipo){
         arquetipo = nuevoArquetipo

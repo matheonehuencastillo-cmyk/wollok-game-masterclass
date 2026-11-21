@@ -28,7 +28,6 @@ object mapa {
     self.agregarColumna(0, 0..24)
     self.agregarColumna(32, 0..24)
 
-    // paredes horizontales internas del laberitno
     // paredes horizontales internas del laberinto
     [12..21, 27..28, 30..31].forEach({ xs =>
       self.agregarFila(xs, 23)
@@ -60,5 +59,11 @@ object mapa {
     self.agregarColumna(20, 5..10)
     self.agregarColumna(23, 15..19)
 
+    // paredes individuales
+    self.agregarPared(6, 1)
+    self.agregarPared(25, 11)
+    self.agregarPared(30, 5)
+    self.agregarPared(31, 7)
+    self.agregarPared(30, 8)
   }
 }

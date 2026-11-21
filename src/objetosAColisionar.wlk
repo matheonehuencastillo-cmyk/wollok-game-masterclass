@@ -9,6 +9,7 @@ class ObjetosAColisionar {
     method colision() {
         self.efecto()
         game.say(personaje, self.mensaje())
+        self.quitarObjeto()
     }
 
     method efecto()

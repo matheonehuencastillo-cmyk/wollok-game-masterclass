@@ -152,7 +152,7 @@ object gestorEnemigosNivelDos {
     self.detenerTodos()
     activos.addAll(self.crearEnemigos())
     activos.forEach({ enemigo => game.addVisual(enemigo) })
-      activos.forEach({ enemigo => enemigo.iniciarComportamiento(1000) })
+    activos.forEach({ enemigo => enemigo.iniciarComportamiento(1000) })
   }
 
   method detenerTodos() {
@@ -188,6 +188,7 @@ object nivelUno inherits Nivel {
   override method colocarObjetos() {
     trampaColocada.mostrar()
     cofreColocado.mostrar()
+    personaje.arquetipo().iniciarReloj(relojDePartida)
   }
 
   override method alLlegarASalida() {
@@ -198,6 +199,7 @@ object nivelUno inherits Nivel {
 object nivelDos inherits Nivel {
   override method colocarObjetos() {
     gestorEnemigosNivelDos.mostrar()
+    relojDePartida.iniciarTemporizador()
   }
 
   override method alLlegarASalida() {
@@ -250,7 +252,7 @@ object inicio {
     keyboard.num2().onPressDo({
       pantallaSeleccionHeroe.seleccionar(
         "seleccionHeroe_ingenioso.jpg",
-        new ArquetipoPersonaje(image = "ingenioso", tiempoTrampa = 45000)
+        new ArquetipoPersonaje(image = "ingenioso", tiempoTrampa = 45000,tiempoStun = 0)
       )
     })
 
@@ -274,6 +276,7 @@ object inicio {
     fondoLaberinto.mostrarEnPantalla()
 
     personaje.reiniciar()
+    relojDePartida.configurarTiempo()
     game.addVisual(relojDePartida)
     game.addVisual(timerTexto)
     game.addVisual(hudVidas)
@@ -281,7 +284,6 @@ object inicio {
     game.addVisual(personaje)
     mapa.inicializarParedes()
 
-    relojDePartida.iniciarTemporizador()
     self.configurarControlesJugador()
     personaje.activarColisiones()
   }
