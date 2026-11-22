@@ -4,14 +4,14 @@ object mapa {
   const paredes = []
   var inicializado = false
 
-  method agregarPared(x, y) { paredes.add(game.at(x, y)) }
+  method clave(x, y) = x * 100 + y
+
+  method agregarPared(x, y) { paredes.add(self.clave(x, y)) }
   method agregarFila(xs, y) { xs.forEach({ x => self.agregarPared(x, y) }) }
   method agregarColumna(x, ys) { ys.forEach({ y => self.agregarPared(x, y) }) }
 
-  method esPosicionLibre(pos) =
-    pos.x().between(0, 32) and pos.y().between(0, 24) and not paredes.contains(pos)
+  method esPosicionLibre(pos) = not paredes.contains(self.clave(pos.x(), pos.y()))
 
-  method esPosicionBloqueada(pos) = not self.esPosicionLibre(pos)
 
   method inicializarParedes() {
     if (not inicializado) {

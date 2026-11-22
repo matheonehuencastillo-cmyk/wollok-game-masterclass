@@ -26,7 +26,7 @@ class Enemigo {
 
 	method esPosicionValida(pos) {
 		const dentroDeLimites = pos.x().between(0, game.width() - 1) and pos.y().between(0, game.height() - 1)
-		const estaBloqueada = mapa.esPosicionBloqueada(pos)
+		const estaBloqueada = !mapa.esPosicionLibre(pos)
 		return dentroDeLimites and not estaBloqueada
 	}
 
@@ -103,7 +103,7 @@ class Esqueleto inherits Enemigo {
 		self.intentarMoverA(direccion.siguientePosicion(position))
 	}
 	override method iniciarComportamiento(frecuenciaMs) {
-		super(frecuenciaMs + 2000)
+		super(frecuenciaMs + 2337)
 	}
 }
 

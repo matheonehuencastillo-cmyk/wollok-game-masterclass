@@ -36,26 +36,6 @@ object relojDePartida{
     }
     
 }
-object relojDeInicio{
-    method position() = game.at(game.width() - 21, game.height() - 3)
-    const property image = "reloj-marco.png"
-    var property tiempo = 3
-
-    //metodo que inicia un temporizador el cual va a reducir el tiempo restante cada segundo.
-    method iniciarTemporizador() {
-        tiempo = 3
-        game.onTick(1000, "reducir tiempo", {
-            self.reducirTiempo()
-        })
-    }
-
-    //metodo que reduce el valor de la variable y si llega a 0 la reinicia e inicia la pantalla de game over.
-    method reducirTiempo(){
-        tiempo = (tiempo - 1).max(0)
-    }
-    
-}
-
 
 //visual del timer del marco, indica el tiempo restante para completar el nivel.
 object timerTexto {
@@ -64,18 +44,6 @@ object timerTexto {
 
     //Se coloca en el marco con reloj un texto que indica el tiempo restante en segundos.
     method text() = " " + relojDePartida.tiempo().toString() + " SEG..."
-
-    //Este metodo asigna el color de la letra del timer.
-    method textColor() = "#ffffff"
-}
-
-//visual del timer del marco, indica el tiempo restante para completar el nivel.
-object timerTextoInicio {
-    method position() = game.at(game.width() - 16, game.height() - 2)
-    
-
-    //Se coloca en el marco con reloj un texto que indica el tiempo restante en segundos.
-    method text() = " " + relojDeInicio.tiempo().toString() + " SEG..."
 
     //Este metodo asigna el color de la letra del timer.
     method textColor() = "#ffffff"

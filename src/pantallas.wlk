@@ -8,6 +8,8 @@ import salida.*
 import enemigos.*
 import hud.*
 import mapa.*
+import pociones.*
+
 
 class PistaMusical {
   const sonido
@@ -152,7 +154,7 @@ object gestorEnemigosNivelDos {
     self.detenerTodos()
     activos.addAll(self.crearEnemigos())
     activos.forEach({ enemigo => game.addVisual(enemigo) })
-    activos.forEach({ enemigo => enemigo.iniciarComportamiento(1000) })
+    activos.forEach({ enemigo => enemigo.iniciarComportamiento(600) })
   }
 
   method detenerTodos() {
@@ -188,6 +190,7 @@ object nivelUno inherits Nivel {
   override method colocarObjetos() {
     trampaColocada.mostrar()
     cofreColocado.mostrar()
+    game.addVisual(new PocionTiempo(image = "pocionTiempo.gif", position = game.at(16, 15)))
     personaje.arquetipo().iniciarReloj(relojDePartida)
   }
 
@@ -200,6 +203,7 @@ object nivelDos inherits Nivel {
   override method colocarObjetos() {
     gestorEnemigosNivelDos.mostrar()
     relojDePartida.iniciarTemporizador()
+    game.addVisual(new PocionVida(image = "pocionVida.gif", position = game.at(29, 2)))
   }
 
   override method alLlegarASalida() {
@@ -245,7 +249,7 @@ object inicio {
     keyboard.num1().onPressDo({
       pantallaSeleccionHeroe.seleccionar(
         "seleccionHeroe_exploradora.jpg",
-        new ArquetipoPersonaje(image = "exploradora", vidasIniciales = 2, tiempoExtra = 30)
+        new ArquetipoPersonaje(image = "exploradora", vidasIniciales = 2, tiempoExtra = 10)
       )
     })
 
@@ -259,7 +263,7 @@ object inicio {
     keyboard.num3().onPressDo({
       pantallaSeleccionHeroe.seleccionar(
         "seleccionHeroe_tanque.jpg",
-        new ArquetipoPersonaje(image = "tanque", vidasIniciales = 3, tiempoExtra = -20)
+        new ArquetipoPersonaje(image = "tanque", vidasIniciales = 3, tiempoExtra = -15)
       )
     })
   }
