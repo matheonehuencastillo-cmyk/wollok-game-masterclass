@@ -1,7 +1,6 @@
-import wollok.game.*
 import jugador.*
 
-object hudVidas {
+object hudVidas{
     method image() {
         return "corazon" + personaje.vidas().toString() + ".png"
     }

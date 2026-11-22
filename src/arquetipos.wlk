@@ -13,15 +13,9 @@ class ArquetipoPersonaje {
     method tiempoTrampa() = tiempoTrampa
     method tiempoStun() = tiempoStun
 
-    method iniciarReloj(reloj) {
-        game.schedule(tiempoStun, { reloj.iniciarTemporizador() })
-    }
 
-    method aplicarStunInicial(unPersonaje) {
-        if (tiempoStun > 0) {
-            unPersonaje.bloquearMovimiento()
-            game.schedule(tiempoStun, { unPersonaje.desbloquearMovimiento() })
-        }
+    method iniciarReloj(reloj) {
+        game.schedule(self.tiempoStun(), { reloj.iniciarTemporizador() })
     }
 }
 

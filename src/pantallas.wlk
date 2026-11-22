@@ -188,7 +188,6 @@ object nivelUno inherits Nivel {
   override method colocarObjetos() {
     trampaColocada.mostrar()
     cofreColocado.mostrar()
-    personaje.arquetipo().aplicarStunInicial(personaje)
     personaje.arquetipo().iniciarReloj(relojDePartida)
   }
 
@@ -253,7 +252,7 @@ object inicio {
     keyboard.num2().onPressDo({
       pantallaSeleccionHeroe.seleccionar(
         "seleccionHeroe_ingenioso.jpg",
-        new ArquetipoPersonaje(image = "ingenioso", tiempoTrampa = 45000, tiempoStun = 0)
+        new ArquetipoPersonaje(image = "ingenioso", tiempoTrampa = 45000,tiempoStun = 0)
       )
     })
 

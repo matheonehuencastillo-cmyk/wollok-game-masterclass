@@ -1,7 +1,7 @@
 import wollok.game.*
 
 object mapa {
-  const paredes = #{}
+  const paredes = []
   var inicializado = false
 
   method agregarPared(x, y) { paredes.add(game.at(x, y)) }

@@ -1,4 +1,4 @@
-import wollok.game.*
+import game.*
 import pantallas.*
 import jugador.*
 
