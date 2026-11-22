@@ -40,8 +40,12 @@ object personaje{
         vidas = arquetipo.vidasIniciales()
         cofreColocado.cofresAbiertos(0)
         self.asignarVida()
-        self.puedeMover(false)
-        game.schedule(arquetipo.tiempoStun(), {self.puedeMover(true)})
+        self.puedeMover(true)
+    }
+
+    method aplicarStunInicial() {
+        self.bloquearMovimiento()
+        game.schedule(arquetipo.tiempoStun(), { self.desbloquearMovimiento() })
     }
     method elegirArquetipo(nuevoArquetipo){
         arquetipo = nuevoArquetipo

@@ -191,6 +191,7 @@ object nivelUno inherits Nivel {
     trampaColocada.mostrar()
     cofreColocado.mostrar()
     game.addVisual(new PocionTiempo(image = "pocionTiempo.gif", position = game.at(16, 15)))
+    personaje.aplicarStunInicial()
     personaje.arquetipo().iniciarReloj(relojDePartida)
   }
 
