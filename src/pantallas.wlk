@@ -147,14 +147,15 @@ object gestorEnemigosNivelDos {
     new Murcielago(position = game.at(15, 2)),
     new Murcielago(position = game.at(10, 13)),
     new Esqueleto(position = game.at(26, 16)),
-    new Esqueleto(position = game.at(14, 9))
+    new Esqueleto(position = game.at(14, 9)),
+    new Esqueleto(position = game.at(14, 17))
   ]
 
   method mostrar() {
     self.detenerTodos()
     activos.addAll(self.crearEnemigos())
     activos.forEach({ enemigo => game.addVisual(enemigo) })
-    activos.forEach({ enemigo => enemigo.iniciarComportamiento(600) })
+    activos.forEach({ enemigo => enemigo.iniciarComportamiento(95) })
   }
 
   method detenerTodos() {
@@ -218,6 +219,7 @@ object inicio {
   var property nivelActual = nivelUno
 
   method iniciar() {
+    mapa.inicializarParedes()
     cinematica.iniciar()
   }
 
@@ -229,6 +231,7 @@ object inicio {
   }
 
   method mostrarMenu() {
+    
     self.limpiarEscena()
     musicaMenu.reproducir()
     pantallaMenu.mostrar(800)
@@ -280,6 +283,7 @@ object inicio {
     musicaLaberinto.reproducir()
     fondoLaberinto.mostrarEnPantalla()
 
+    
     personaje.reiniciar()
     relojDePartida.configurarTiempo()
     game.addVisual(relojDePartida)
@@ -287,7 +291,7 @@ object inicio {
     game.addVisual(hudVidas)
     game.addVisual(salida)
     game.addVisual(personaje)
-    mapa.inicializarParedes()
+    
 
     self.configurarControlesJugador()
     personaje.activarColisiones()

@@ -1,4 +1,4 @@
-# Corredor del Laberinto
+# El Corredor del Laberinto
 
 Juego 2D de exploración y supervivencia a contrarreloj desarrollado en **Wollok Game**, donde deberás recorrer un laberinto para conseguir la llave y escapar antes de que se agote el tiempo, evitando trampas y monstruos.
 

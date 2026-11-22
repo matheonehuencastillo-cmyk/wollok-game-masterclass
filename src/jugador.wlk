@@ -47,6 +47,7 @@ object personaje{
         self.bloquearMovimiento()
         game.schedule(arquetipo.tiempoStun(), { self.desbloquearMovimiento() })
     }
+    
     method elegirArquetipo(nuevoArquetipo){
         arquetipo = nuevoArquetipo
         vidas = arquetipo.vidasIniciales()

@@ -1,6 +1,9 @@
 import wollok.game.*
 import jugador.*
 
+/*---------------------------------------------------------//Objetos con colisiones//---------------------------------------------------------*/
+
+
 class ObjetosAColisionar {
     var property position
 

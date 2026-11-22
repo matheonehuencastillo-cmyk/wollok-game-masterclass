@@ -1,5 +1,8 @@
 import wollok.game.*
 
+/*---------------------------------------------------------//Arquetipos//---------------------------------------------------------*/
+
+//Clase que representa un arquetipo de personaje, se encarga de definir los atributos y comportamientos del personaje.
 class ArquetipoPersonaje {
     const image = ""
     const vidasIniciales = 1
