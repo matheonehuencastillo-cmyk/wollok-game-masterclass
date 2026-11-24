@@ -21,6 +21,9 @@ jobs:
       # nombra los paquetes con puntos ("src.juego"). Como el juego está dentro de src/, se corrige acá.
       - name: Arreglar el nombre del programa principal
         run: sed -i "s|s\.slice(0, -5)|.slice(0, -5).split('/').join('.')|" game-runner.js
+      
+      - name: Inspeccionar game-runner.js
+        run: grep -nE "juego|slice\(.*\)|wpgm" game-runner.js || true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
