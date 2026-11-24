@@ -12,12 +12,14 @@ permissions:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: uqbar-project/wollok-web-tools@main
 
-      # Wollok nombra los paquetes con puntos ("src.juego"), pero .slice(0, -5) deja "src/juego".
       - name: Arreglar el nombre del programa principal
         run: sed -i "s|\.slice(0, -5)|.slice(0, -5).split('/').join('.')|" game-runner.js
 
@@ -27,4 +29,5 @@ jobs:
           path: .
 
       - name: Deploy
+        id: deployment
         uses: actions/deploy-pages@v4
