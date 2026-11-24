@@ -17,13 +17,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: uqbar-project/wollok-web-tools@main
 
-      # wollok-web-tools toma el nombre del programa de la ruta del .wpgm ("src/juego"), pero Wollok
-      # nombra los paquetes con puntos ("src.juego"). Como el juego está dentro de src/, se corrige acá.
+      # Wollok nombra los paquetes con puntos ("src.juego"), pero .slice(0, -5) deja "src/juego".
       - name: Arreglar el nombre del programa principal
-        run: sed -i "s|s\.slice(0, -5)|.slice(0, -5).split('/').join('.')|" game-runner.js
-      
-      - name: Inspeccionar game-runner.js
-        run: grep -nE "juego|slice\(.*\)|wpgm" game-runner.js || true
+        run: sed -i "s|\.slice(0, -5)|.slice(0, -5).split('/').join('.')|" game-runner.js
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
