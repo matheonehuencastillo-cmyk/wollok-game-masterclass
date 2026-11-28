@@ -146,9 +146,9 @@ object gestorEnemigosNivelDos {
   method crearEnemigos() = [
     new Murcielago(position = game.at(15, 2)),
     new Murcielago(position = game.at(10, 13)),
-    new Esqueleto(position = game.at(26, 16)),
-    new Esqueleto(position = game.at(14, 9)),
-    new Esqueleto(position = game.at(14, 17))
+    new Esqueleto(position = game.at(26, 16), objetivo = personaje),
+    new Esqueleto(position = game.at(14, 9), objetivo = personaje),
+    new Esqueleto(position = game.at(14, 17), objetivo = personaje)
   ]
 
   method mostrar() {
