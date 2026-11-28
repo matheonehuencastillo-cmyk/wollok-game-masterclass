@@ -34,7 +34,7 @@ Al iniciar la partida puedes consultar los controles o elegir entre **3 personaj
 
 | Personaje | Vidas | Tiempo total | Características |
 | :--- | :---: | :---: | :--- |
-| <img src="assets/exploradora-abajo.png" width="24" height="24"/>&nbsp;**Exploradora** | <img src="assets/corazon2.png" width="96" height="24"/> | 55 seg (+10s) | Cuenta con tiempo extra para explorar el mapa. |
+| <img src="assets/exploradora-abajo.png" width="20" height="20"/>&nbsp;**Exploradora** | <img src="assets/corazon2.png" width="96" height="24"/> | 55 seg (+10s) | Cuenta con tiempo extra para explorar el mapa. |
 | <img src="assets/ingenioso-abajo.png" width="24" height="24"/>&nbsp;**Ingenioso** | <img src="assets/corazon1.png" width="96" height="24"/> | 45 seg (+0s) | Ve todas las trampas durante toda la partida (45s) y puede moverse desde el primer segundo sin esperar. |
 | <img src="assets/tanque-abajo.png" width="24" height="24"/>&nbsp;**Tanque** | <img src="assets/corazon3.png" width="96" height="24"/> | 30 seg (-15s) | Mayor resistencia al daño, pero dispone de menos tiempo. |
 
