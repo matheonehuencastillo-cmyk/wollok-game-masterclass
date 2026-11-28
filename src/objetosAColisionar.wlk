@@ -1,9 +1,10 @@
 import wollok.game.*
 import jugador.*
+import tiempo.*
 
 /*---------------------------------------------------------//Objetos con colisiones//---------------------------------------------------------*/
 
-
+//Clase madre abstracta donde se va a utilizar para crear distinto elementos colisionables.
 class ObjetosAColisionar {
     var property position
 
@@ -79,4 +80,40 @@ object cofreColocado {
       game.addVisual(cofre_)
     })
   }
+}
+
+/*---------------------------------------------------------//Pociones Del Juego//---------------------------------------------------------*/
+
+//Clase que representa una pocion de vida heredando de ObjetosAColisionar, al momento de instanciar hay que indicar la ruta de la imagen.
+class PocionVida inherits ObjetosAColisionar{
+    const imagen
+
+    override method image() {
+      return imagen
+    }
+
+    override method efecto(){
+      personaje.sumarVida()
+    }
+
+    override method mensaje(){
+      return "¡Una poción de vida!"
+    }
+}
+
+//Clase que representa una pocion de tiempo heredando de ObjetosAColisionar, al momento de instanciar hay que indicar la ruta de la imagen.
+class PocionTiempo inherits ObjetosAColisionar {
+    const imagen
+
+    override method image(){
+      return imagen
+    }
+
+    override method efecto(){
+      relojDePartida.sumarTiempo()
+    }
+
+    override method mensaje(){
+      return "¡Una poción de tiempo! +5 segundos"
+    }
 }

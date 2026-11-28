@@ -8,7 +8,7 @@ import salida.*
 import enemigos.*
 import hud.*
 import mapa.*
-import pociones.*
+
 
 
 class PistaMusical {
@@ -191,7 +191,7 @@ object nivelUno inherits Nivel {
   override method colocarObjetos() {
     trampaColocada.mostrar()
     cofreColocado.mostrar()
-    game.addVisual(new PocionTiempo(image = "pocionTiempo.gif", position = game.at(16, 15)))
+    game.addVisual(new PocionTiempo(imagen = "pocionTiempo.gif", position = game.at(16, 15)))
     personaje.aplicarStunInicial()
     personaje.arquetipo().iniciarReloj(relojDePartida)
   }
@@ -205,7 +205,7 @@ object nivelDos inherits Nivel {
   override method colocarObjetos() {
     gestorEnemigosNivelDos.mostrar()
     relojDePartida.iniciarTemporizador()
-    game.addVisual(new PocionVida(image = "pocionVida.gif", position = game.at(29, 2)))
+    game.addVisual(new PocionVida(imagen = "pocionVida.gif", position = game.at(29, 2)))
   }
 
   override method alLlegarASalida() {
